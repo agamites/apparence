@@ -1,0 +1,62 @@
+# @agamites/apparence
+
+La charte « Grimoire » et les éléments d'écran communs aux deux briques d'Agamites : la Plateforme (Emmanuel) et la brique Règles (Albert).
+Pour le joueur, c'est un seul site : même en-tête, même menu, mêmes couleurs, mêmes boutons. On change ici, et les deux briques suivent (contrat, section 2.1).
+
+## Installer
+
+```
+npm install github:agamites/apparence#v1.0.0
+```
+
+Le dépôt est public : aucune clé n'est nécessaire, ni en local ni sur le serveur. Pour passer à une nouvelle version, on change le numéro après `#`.
+
+## Utiliser
+
+```tsx
+import '@agamites/apparence/charte.css';
+import { Cadre, Carte, Champ, Message, appelAvecSession, moi } from '@agamites/apparence';
+
+const joueur = await moi();          // null si personne n'est connecté
+if (!joueur || joueur.doit_changer_mot_de_passe) window.location.assign('/');
+
+<Cadre brique="regles" nom={joueur.nom} peutInviter={joueur.peut_inviter} naviguer={(chemin) => routeur.aller(chemin)}>
+  <Carte titre="Mes personnages">…</Carte>
+</Cadre>
+```
+
+| Élément | Rôle |
+| --- | --- |
+| `Cadre` | en-tête (portrait, « Agamites », menu commun, initiale et prénom, « Se déconnecter »), contenu, pied de page |
+| `Carte`, `Vide` | bloc sur vélin avec son titre ; texte d'un bloc encore vide (on le dit, on ne le cache pas) |
+| `Champ` | libellé au-dessus, aide et erreur en dessous, reliées au contrôle pour les lecteurs d'écran |
+| `Message` | bandeau `reussite` (vert), `alerte` (ambre : signalé) ou `erreur` (rouge : refusé) |
+| `moi()` | le joueur connecté, ou `null` |
+| `appelAvecSession()` | `fetch` qui, sur un 401, renouvelle le jeton auprès de la Plateforme et recommence une fois |
+| `deconnecter()` | ferme la session sur tout le site |
+| `MENU` | le menu commun, avec la brique propriétaire de chaque entrée |
+
+Les classes CSS (`.bouton`, `.bouton-secondaire`, `.lien-bouton`, `.formulaire`, `.colonnes`, `.pile`…) sont décrites dans [CHARTE.md](https://github.com/agamites/plateforme/blob/main/CHARTE.md) (dépôt `plateforme`).
+
+## Le menu
+
+Chaque entrée appartient à une brique. Un lien vers l'autre brique recharge la page ; un lien dans sa propre brique passe par `naviguer` (sans rechargement). Une entrée pas encore construite reste visible, grisée, avec « Bientôt ».
+
+**Quand un de tes écrans est prêt**, passe son entrée à `disponible: true` dans [`src/menu.ts`](src/menu.ts), propose la modification, puis publie une nouvelle version (voir plus bas). D'ici là, pour essayer chez toi : `<Cadre menu={…}>`.
+
+Les chemins de la brique Règles sont sous `/regles/` : `/regles/personnages`, `/regles/magie`, `/regles/objets`, `/regles/bestiaire`.
+
+## Le portrait
+
+`Cadre` affiche `/lovecraft.jpg`, que la Plateforme sert à la racine du site : rien à faire en production. En développement local, copie `node_modules/@agamites/apparence/ressources/lovecraft.jpg` dans le dossier `public/` de ta brique.
+
+## Publier une version
+
+```
+npm run verifier                     # construit dist/ et lance les tests
+git add -A && git commit -m "…"
+npm version minor                    # ou patch : met à jour le numéro et crée l'étiquette
+git push --follow-tags
+```
+
+Le dossier `dist/` est versionné : c'est lui qu'installent les deux briques.

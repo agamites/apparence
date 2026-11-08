@@ -1,0 +1,139 @@
+/* Charte Agamites « Grimoire », version 1 (8 novembre 2026).
+   Ces variables seront la base du paquet d'apparence commun aux deux briques. */
+@import '@fontsource/alegreya/400.css';
+@import '@fontsource/alegreya/400-italic.css';
+@import '@fontsource/alegreya/700.css';
+@import '@fontsource/alegreya-sc/500.css';
+@import '@fontsource/alegreya-sc/700.css';
+
+:root {
+  --parchemin: #efe5d1;
+  --velin: #f8f2e6;
+  --papier: #fffdf8;
+  --encre: #2a2118;
+  --sepia: #6a5a46;
+  --rubrique: #8e2b1e;
+  --rubrique-sombre: #5e1a11;
+  --filet: #c9b791;
+  --filet-champ: #b9a682;
+  --indisponible: #d8cbb0;
+  --mousse: #3d6b35;
+  --mousse-fond: #e6ecdc;
+  --ambre: #9a6a12;
+  --ambre-fond: #f3e6c8;
+  --sang: #b3261e;
+  --sang-fond: #f4dcd6;
+
+  --police-titre: 'Alegreya SC', Georgia, 'Palatino Linotype', serif;
+  --police-texte: 'Alegreya', Georgia, 'Palatino Linotype', serif;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--parchemin);
+  color: var(--encre);
+  font-family: var(--police-texte);
+  font-size: 17px;
+  line-height: 1.5;
+}
+a { color: var(--rubrique); }
+a:hover { color: var(--rubrique-sombre); }
+h1, h2, h3 { font-family: var(--police-titre); line-height: 1.1; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(32px, 5vw, 44px); font-weight: 700; }
+h2 { font-size: 24px; font-weight: 700; }
+p { margin: 0; }
+:focus-visible { outline: 2px solid var(--rubrique); outline-offset: 2px; }
+
+.surtitre { font-family: var(--police-titre); color: var(--rubrique); letter-spacing: .12em; font-size: 15px; }
+.note { font-size: 15px; color: var(--sepia); }
+
+/* En-tête et menu */
+.entete {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px;
+  padding: 16px max(16px, 3vw); background: #f6efe1; border-bottom: 2px solid var(--encre);
+}
+.marque { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--encre); }
+.marque span { font-family: var(--police-titre); font-weight: 700; font-size: 28px; letter-spacing: .06em; }
+.menu { display: flex; flex-wrap: wrap; gap: 6px 18px; flex: 1 1 auto; font-family: var(--police-titre); font-size: 16px; }
+.menu a { color: var(--encre); text-decoration: none; padding-bottom: 2px; border-bottom: 2px solid transparent; }
+.menu a[aria-current='page'] { color: var(--rubrique); border-bottom-color: var(--rubrique); }
+.menu .bientot { color: var(--sepia); opacity: .7; cursor: default; }
+.compte { display: flex; align-items: center; gap: 10px; font-size: 16px; margin-left: auto; }
+.initiale {
+  width: 34px; height: 34px; border-radius: 50%; background: var(--encre); color: #f6efe1;
+  display: grid; place-items: center; font-family: var(--police-titre);
+}
+
+/* Portrait de Lovecraft */
+.portrait { object-fit: cover; object-position: 50% 22%; border-radius: 50%; border: 1.5px solid var(--rubrique); filter: sepia(.35); }
+
+/* Mise en page */
+#racine { min-height: 100vh; display: flex; flex-direction: column; }
+.page { flex: 1 0 auto; width: 100%; padding: 36px max(16px, 4vw) 48px; max-width: 1280px; margin: 0 auto; }
+.colonnes { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 36px; }
+.pile { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+@media (max-width: 860px) { .colonnes { grid-template-columns: minmax(0, 1fr); } }
+
+.carte { background: var(--velin); border: 1px solid var(--filet); border-radius: 4px; padding: 24px 28px; }
+.carte-titre { font-family: var(--police-titre); font-size: 16px; letter-spacing: .14em; color: var(--sepia); margin-bottom: 10px; }
+.vide { color: var(--sepia); font-style: italic; }
+
+/* Boutons */
+.bouton {
+  display: inline-block; font-family: var(--police-titre); font-size: 18px; letter-spacing: .02em;
+  border-radius: 3px; padding: 12px 22px; cursor: pointer; text-decoration: none; text-align: center;
+  background: var(--rubrique); color: var(--velin); border: none;
+}
+.bouton:hover { background: var(--rubrique-sombre); color: var(--velin); }
+.bouton:disabled { background: var(--indisponible); color: var(--sepia); cursor: not-allowed; }
+.bouton-secondaire { background: none; color: var(--encre); border: 1.5px solid var(--encre); padding: 10px 20px; }
+.bouton-secondaire:hover { background: var(--encre); color: var(--velin); }
+.lien-bouton { background: none; border: none; padding: 0; font: inherit; color: var(--rubrique); text-decoration: underline; cursor: pointer; }
+
+/* Formulaires */
+.formulaire { display: flex; flex-direction: column; gap: 16px; }
+.champ { display: flex; flex-direction: column; gap: 6px; font-family: var(--police-titre); font-size: 15px; letter-spacing: .06em; }
+.champ input, .champ select, .champ textarea {
+  font: 17px var(--police-texte); letter-spacing: 0; padding: 11px 12px; border: 1px solid var(--filet-champ);
+  border-radius: 3px; background: var(--papier); color: var(--encre); width: 100%;
+}
+.champ textarea { resize: vertical; min-height: 64px; }
+.champ .aide { font-family: var(--police-texte); letter-spacing: 0; font-size: 15px; color: var(--sepia); }
+.champ .erreur-champ { font-family: var(--police-texte); letter-spacing: 0; font-size: 15px; color: var(--sang); }
+.champ input[aria-invalid='true'] { border: 1.5px solid var(--sang); }
+
+/* Messages */
+.message { padding: 12px 16px; border-left: 4px solid; }
+.message-reussite { border-color: var(--mousse); background: var(--mousse-fond); }
+.message-alerte { border-color: var(--ambre); background: var(--ambre-fond); }
+.message-erreur { border-color: var(--sang); background: var(--sang-fond); }
+
+/* Écrans d'accès (connexion, premier mot de passe) */
+.acces { min-height: 100vh; display: grid; place-items: center; padding: 32px 16px; }
+.acces-boite { width: min(460px, 100%); display: flex; flex-direction: column; gap: 22px; }
+
+.regles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 16px; font-size: 16px; }
+.regles li { display: flex; gap: 8px; color: var(--sepia); }
+.regles li[data-ok='true'] { color: var(--mousse); }
+.regles .marque-regle { width: 18px; text-align: center; font-weight: 700; }
+@media (max-width: 420px) { .regles { grid-template-columns: minmax(0, 1fr); } }
+
+/* Liste d'invitations */
+.liste { list-style: none; margin: 0; padding: 0; }
+.liste li { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 16px; padding: 14px 0; border-bottom: 1px solid var(--filet); }
+.liste .actions { display: flex; gap: 14px; }
+.etat-actif { color: var(--mousse); font-size: 15px; }
+.etat-invite { color: var(--sepia); font-size: 15px; }
+.etat-expiree { color: var(--ambre); font-size: 15px; }
+
+.pied {
+  display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; align-items: center;
+  padding: 16px max(16px, 4vw); border-top: 1px solid var(--filet); color: var(--sepia); font-size: 15px;
+}
+.pied span { display: flex; align-items: center; gap: 10px; }
+
+.visuellement-cache {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
