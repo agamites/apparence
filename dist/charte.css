@@ -61,6 +61,8 @@ p { margin: 0; }
 .menu a[aria-current='page'] { color: var(--rubrique); border-bottom-color: var(--rubrique); }
 .menu .bientot { color: var(--sepia); opacity: .7; cursor: default; }
 .compte { display: flex; align-items: center; gap: 10px; font-size: 16px; margin-left: auto; }
+.compte-lien { display: flex; align-items: center; gap: 10px; color: var(--encre); text-decoration: none; }
+.compte-lien:hover span:last-child, .compte-lien[aria-current='page'] span:last-child { color: var(--rubrique); text-decoration: underline; }
 .initiale {
   width: 34px; height: 34px; border-radius: 50%; background: var(--encre); color: #f6efe1;
   display: grid; place-items: center; font-family: var(--police-titre);
@@ -103,6 +105,14 @@ p { margin: 0; }
 .champ .aide { font-family: var(--police-texte); letter-spacing: 0; font-size: 15px; color: var(--sepia); }
 .champ .erreur-champ { font-family: var(--police-texte); letter-spacing: 0; font-size: 15px; color: var(--sang); }
 .champ input[aria-invalid='true'] { border: 1.5px solid var(--sang); }
+
+/* Cases à cocher et boutons radio : la case devant son libellé, en texte courant */
+.case { display: flex; align-items: center; gap: 10px; font-size: 16px; cursor: pointer; }
+.case input { width: 18px; height: 18px; margin: 0; accent-color: var(--rubrique); }
+.choix { border: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.choix legend { font-family: var(--police-titre); font-size: 15px; letter-spacing: .06em; padding: 0; margin-bottom: 6px; }
+.choix-options { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+.choix .aide { font-size: 15px; color: var(--sepia); }
 
 /* Messages */
 .message { padding: 12px 16px; border-left: 4px solid; }

@@ -58,10 +58,18 @@ export function Cadre(p: CadreProps) {
             )}
         </nav>
         <div className="compte">
-          <span className="initiale" aria-hidden="true">
-            {p.nom.slice(0, 1).toUpperCase()}
-          </span>
-          <span>{p.nom}</span>
+          <a
+            className="compte-lien"
+            href="/compte"
+            title="Mon compte"
+            aria-current={chemin === '/compte' ? 'page' : undefined}
+            onClick={suivre('/compte', 'plateforme')}
+          >
+            <span className="initiale" aria-hidden="true">
+              {p.nom.slice(0, 1).toUpperCase()}
+            </span>
+            <span>{p.nom}</span>
+          </a>
           <button type="button" className="lien-bouton" onClick={p.surDeconnexion ?? (() => void deconnecter())}>
             Se déconnecter
           </button>

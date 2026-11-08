@@ -31,3 +31,7 @@ test("une entrée rendue disponible devient un lien, souligné sur sa page", () 
   assert.match(html, /<a href="\/regles\/magie" aria-current="page">Magie<\/a>/);
   assert.match(html, />A<\/span><span>albert<\/span>/);
 });
+
+test('le prénom mène à « Mon compte »', () => {
+  assert.match(rendre({ chemin: '/compte' }), /<a class="compte-lien" href="\/compte" title="Mon compte" aria-current="page">/);
+});
