@@ -6,10 +6,10 @@ Pour le joueur, c'est un seul site : même en-tête, même menu, mêmes couleurs
 ## Installer
 
 ```
-npm install github:agamites/apparence#v1.0.0
+npm install -D https://codeload.github.com/agamites/apparence/tar.gz/3f4864dee39e709d1ee511cee470c724a7aab9d5
 ```
 
-Le dépôt est public : aucune clé n'est nécessaire, ni en local ni sur le serveur. Pour passer à une nouvelle version, on change le numéro après `#`.
+Le dépôt est public : aucune clé ni aucun `git` ne sont nécessaires, ni en local ni dans une image Docker. L'adresse désigne une version précise (le numéro du commit). Pour passer à une version plus récente, on remplace ce numéro par celui du dernier commit de `main`, indiqué en tête de [l'historique](https://github.com/agamites/apparence/commits/main).
 
 ## Utiliser
 
@@ -54,9 +54,8 @@ Les chemins de la brique Règles sont sous `/regles/` : `/regles/personnages`, `
 
 ```
 npm run verifier                     # construit dist/ et lance les tests
-git add -A && git commit -m "…"
-npm version minor                    # ou patch : met à jour le numéro et crée l'étiquette
-git push --follow-tags
+npm version minor --no-git-tag-version   # ou patch : met à jour le numéro de version
+git add -A && git commit -m "…" && git push
 ```
 
-Le dossier `dist/` est versionné : c'est lui qu'installent les deux briques.
+Le dossier `dist/` est versionné : c'est lui qu'installent les deux briques. Chaque brique passe ensuite à la nouvelle version en changeant le numéro de commit dans son `package.json`.
