@@ -35,7 +35,7 @@ if (!joueur || joueur.doit_changer_mot_de_passe) window.location.assign('/');
 | ------- | ------------------------------------------------------------------------------------------------------------ |
 | `Cadre` | en-tête (portrait, « Agamites », menu commun, initiale et prénom, « Se déconnecter »), contenu, pied de page |
 
-Depuis la 1.3.0, passez `profils={joueur.roles}` au `Cadre` : l'entrée « Mondes et PNJ » n'est montrée qu'aux MJ, et « Campagnes » est ouverte.
+Passez `profils={joueur.roles}` au `Cadre` (depuis la 1.3.0) : il sert aux entrées réservées à un profil. Depuis la 1.4.0, « Mondes et PNJ » et « Campagnes » sont ouvertes à tous.
 | `Carte`, `Vide` | bloc sur vélin avec son titre ; texte d'un bloc encore vide (on le dit, on ne le cache pas) |
 | `Champ` | libellé au-dessus, aide et erreur en dessous, reliées au contrôle pour les lecteurs d'écran |
 | `Message` | bandeau `reussite` (vert), `alerte` (ambre : signalé) ou `erreur` (rouge : refusé) |

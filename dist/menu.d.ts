@@ -8,7 +8,7 @@ export interface EntreeMenu {
     disponible: boolean;
     /** Entrée montrée seulement à ceux qui peuvent inviter (MJ et administrateurs). */
     reservee_inviteurs?: boolean;
-    /** Entrée montrée seulement aux comptes qui ont ce profil (« mj » : les mondes, réservés aux MJ). */
+    /** Entrée montrée seulement aux comptes qui ont ce profil. */
     reservee_profil?: 'mj' | 'admin';
 }
 export declare const MENU: readonly EntreeMenu[];

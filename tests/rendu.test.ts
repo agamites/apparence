@@ -39,8 +39,7 @@ test('le prénom mène à « Mon compte »', () => {
   );
 });
 
-test('« Mondes et PNJ » seulement pour le profil MJ ; « Campagnes » pour tous', () => {
-  assert.doesNotMatch(rendre({}), /Mondes et PNJ/);
-  assert.match(rendre({ profils: ['mj'] }), /href="\/mondes"/);
+test('« Mondes et PNJ » et « Campagnes » pour tous', () => {
+  assert.match(rendre({}), /href="\/mondes"/);
   assert.match(rendre({}), /href="\/campagnes"/);
 });
