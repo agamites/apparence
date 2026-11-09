@@ -1,24 +1,40 @@
 {
   "name": "@agamites/apparence",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Agamites — la charte « Grimoire » et les éléments d'écran communs aux deux briques",
   "type": "module",
   "license": "UNLICENSED",
   "repository": "github:agamites/apparence",
-  "files": ["dist", "ressources"],
+  "files": [
+    "dist",
+    "ressources",
+    "reglages"
+  ],
   "exports": {
-    ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
     "./charte.css": "./dist/charte.css",
     "./lovecraft.jpg": "./ressources/lovecraft.jpg",
-    "./favicon.png": "./ressources/favicon.png"
+    "./favicon.png": "./ressources/favicon.png",
+    "./prettier": "./reglages/prettier.json",
+    "./eslint": "./reglages/eslint.mjs"
   },
   "scripts": {
     "construire": "rm -rf dist && tsc -p tsconfig.json && cp src/charte.css dist/charte.css",
-    "verifier": "npm run construire && node --test tests/*.test.ts"
+    "verifier": "eslint . && prettier --check . && npm run construire && vitest run",
+    "formater": "prettier --write ."
   },
   "dependencies": {
+    "@eslint/js": "^9.39.5",
     "@fontsource/alegreya": "^5.3.0",
-    "@fontsource/alegreya-sc": "^5.3.0"
+    "@fontsource/alegreya-sc": "^5.3.0",
+    "eslint": "^9.39.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.14.0",
+    "prettier": "^3.9.10",
+    "typescript-eslint": "^8.72.2"
   },
   "peerDependencies": {
     "react": ">=19"
@@ -29,6 +45,8 @@
     "@types/react-dom": "^19.3.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "typescript": "~5.9"
-  }
+    "typescript": "~5.9",
+    "vitest": "^5.1.0"
+  },
+  "peerDependenciesMeta": {}
 }

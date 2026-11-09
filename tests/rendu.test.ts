@@ -1,6 +1,6 @@
 // Le cadre se rend côté serveur sans erreur, avec le bon menu selon le joueur et la page.
 import assert from 'node:assert/strict';
-import { test } from 'node:test';
+import { test } from 'vitest';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { Cadre, MENU, entreeActive } from '../dist/index.js';
@@ -25,7 +25,7 @@ test('une entrée pas encore construite est grisée, sans lien', () => {
   assert.match(html, /<a href="\/" aria-current="page">Accueil<\/a>/);
 });
 
-test("une entrée rendue disponible devient un lien, souligné sur sa page", () => {
+test('une entrée rendue disponible devient un lien, souligné sur sa page', () => {
   const menu = MENU.map((e) => (e.cle === 'magie' ? { ...e, disponible: true } : e));
   const html = rendre({ menu, chemin: '/regles/magie' });
   assert.match(html, /<a href="\/regles\/magie" aria-current="page">Magie<\/a>/);
@@ -33,5 +33,8 @@ test("une entrée rendue disponible devient un lien, souligné sur sa page", () 
 });
 
 test('le prénom mène à « Mon compte »', () => {
-  assert.match(rendre({ chemin: '/compte' }), /<a class="compte-lien" href="\/compte" title="Mon compte" aria-current="page">/);
+  assert.match(
+    rendre({ chemin: '/compte' }),
+    /<a class="compte-lien" href="\/compte" title="Mon compte" aria-current="page">/,
+  );
 });

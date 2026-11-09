@@ -13,7 +13,12 @@ export function Message(p: { type: 'reussite' | 'alerte' | 'erreur'; children: R
  * Un champ de formulaire : libellé au-dessus, aide et erreur en dessous.
  * `children` est le contrôle lui-même (input, select, textarea) ; l'aide et l'erreur lui sont reliées pour les lecteurs d'écran.
  */
-export function Champ(p: { libelle: string; aide?: ReactNode; erreur?: ReactNode; children: (attributs: { id: string; 'aria-describedby'?: string; 'aria-invalid'?: true }) => ReactNode }) {
+export function Champ(p: {
+  libelle: string;
+  aide?: ReactNode;
+  erreur?: ReactNode;
+  children: (attributs: { id: string; 'aria-describedby'?: string; 'aria-invalid'?: true }) => ReactNode;
+}) {
   const id = useId();
   const aideId = p.aide ? `${id}-aide` : undefined;
   const erreurId = p.erreur ? `${id}-erreur` : undefined;

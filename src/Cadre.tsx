@@ -47,7 +47,12 @@ export function Cadre(p: CadreProps) {
             .filter((e) => !e.reservee_inviteurs || p.peutInviter)
             .map((e) =>
               e.disponible ? (
-                <a key={e.cle} href={e.chemin} aria-current={active?.cle === e.cle ? 'page' : undefined} onClick={suivre(e.chemin, e.brique)}>
+                <a
+                  key={e.cle}
+                  href={e.chemin}
+                  aria-current={active?.cle === e.cle ? 'page' : undefined}
+                  onClick={suivre(e.chemin, e.brique)}
+                >
                   {e.texte}
                 </a>
               ) : (
@@ -70,7 +75,16 @@ export function Cadre(p: CadreProps) {
             </span>
             <span>{p.nom}</span>
           </a>
-          <button type="button" className="lien-bouton" onClick={p.surDeconnexion ?? (() => void deconnecter())}>
+          <button
+            type="button"
+            className="lien-bouton"
+            onClick={
+              p.surDeconnexion ??
+              (() => {
+                void deconnecter();
+              })
+            }
+          >
             Se déconnecter
           </button>
         </div>

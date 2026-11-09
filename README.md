@@ -17,26 +17,38 @@ Le dépôt est public : aucune clé ni aucun `git` ne sont nécessaires, ni en l
 import '@agamites/apparence/charte.css';
 import { Cadre, Carte, Champ, Message, appelAvecSession, moi } from '@agamites/apparence';
 
-const joueur = await moi();          // null si personne n'est connecté
+const joueur = await moi(); // null si personne n'est connecté
 if (!joueur || joueur.doit_changer_mot_de_passe) window.location.assign('/');
 
 <Cadre brique="regles" nom={joueur.nom} peutInviter={joueur.peut_inviter} naviguer={(chemin) => routeur.aller(chemin)}>
   <Carte titre="Mes personnages">…</Carte>
-</Cadre>
+</Cadre>;
 ```
 
-| Élément | Rôle |
-| --- | --- |
-| `Cadre` | en-tête (portrait, « Agamites », menu commun, initiale et prénom, « Se déconnecter »), contenu, pied de page |
-| `Carte`, `Vide` | bloc sur vélin avec son titre ; texte d'un bloc encore vide (on le dit, on ne le cache pas) |
-| `Champ` | libellé au-dessus, aide et erreur en dessous, reliées au contrôle pour les lecteurs d'écran |
-| `Message` | bandeau `reussite` (vert), `alerte` (ambre : signalé) ou `erreur` (rouge : refusé) |
-| `moi()` | le joueur connecté, ou `null` |
-| `appelAvecSession()` | `fetch` qui, sur un 401, renouvelle le jeton auprès de la Plateforme et recommence une fois |
-| `deconnecter()` | ferme la session sur tout le site |
-| `MENU` | le menu commun, avec la brique propriétaire de chaque entrée |
+| Élément              | Rôle                                                                                                         |
+| -------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `Cadre`              | en-tête (portrait, « Agamites », menu commun, initiale et prénom, « Se déconnecter »), contenu, pied de page |
+| `Carte`, `Vide`      | bloc sur vélin avec son titre ; texte d'un bloc encore vide (on le dit, on ne le cache pas)                  |
+| `Champ`              | libellé au-dessus, aide et erreur en dessous, reliées au contrôle pour les lecteurs d'écran                  |
+| `Message`            | bandeau `reussite` (vert), `alerte` (ambre : signalé) ou `erreur` (rouge : refusé)                           |
+| `moi()`              | le joueur connecté, ou `null`                                                                                |
+| `appelAvecSession()` | `fetch` qui, sur un 401, renouvelle le jeton auprès de la Plateforme et recommence une fois                  |
+| `deconnecter()`      | ferme la session sur tout le site                                                                            |
+| `MENU`               | le menu commun, avec la brique propriétaire de chaque entrée                                                 |
 
 Les classes CSS (`.bouton`, `.bouton-secondaire`, `.lien-bouton`, `.formulaire`, `.colonnes`, `.pile`…) sont décrites dans [CHARTE.md](https://github.com/agamites/plateforme/blob/main/CHARTE.md) (dépôt `plateforme`).
+
+## Les réglages communs du code
+
+Les consignes communes (`contrats/CONSIGNES.md`, section 3) demandent les mêmes outils dans les deux briques. Leurs réglages vivent ici :
+
+| Outil        | Rôle                                                                                             | Dans la brique                                                                                           |
+| ------------ | ------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------- |
+| **Prettier** | met le code en forme (120 colonnes, guillemets simples, virgules finales)                        | `.prettierrc.json` contenant `"@agamites/apparence/prettier"`                                            |
+| **ESLint**   | signale les erreurs probables (TypeScript, règles des hooks React, `===`, variables inutilisées) | `eslint.config.mjs` : `import agamites from '@agamites/apparence/eslint'; export default [...agamites];` |
+| **Vitest**   | lance les tests                                                                                  | `vitest run`                                                                                             |
+
+Le paquet apporte ESLint, Prettier et leurs extensions : rien d'autre à installer. Pour changer une règle pour les deux briques, on la change ici.
 
 ## Le menu
 

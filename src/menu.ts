@@ -25,7 +25,14 @@ export const MENU: readonly EntreeMenu[] = [
   { cle: 'bestiaire', texte: 'Bestiaire', chemin: '/regles/bestiaire', brique: 'regles', disponible: false },
   { cle: 'mondes', texte: 'Mondes et PNJ', chemin: '/mondes', brique: 'plateforme', disponible: false },
   { cle: 'campagnes', texte: 'Campagnes', chemin: '/campagnes', brique: 'plateforme', disponible: false },
-  { cle: 'joueurs', texte: 'Joueurs', chemin: '/joueurs', brique: 'plateforme', disponible: true, reservee_inviteurs: true },
+  {
+    cle: 'joueurs',
+    texte: 'Joueurs',
+    chemin: '/joueurs',
+    brique: 'plateforme',
+    disponible: true,
+    reservee_inviteurs: true,
+  },
 ];
 
 /** L'entrée qui correspond à un chemin de page (la plus longue qui en est le début). */
