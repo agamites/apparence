@@ -15,6 +15,8 @@ export interface EntreeMenu {
   disponible: boolean;
   /** Entrée montrée seulement à ceux qui peuvent inviter (MJ et administrateurs). */
   reservee_inviteurs?: boolean;
+  /** Entrée montrée seulement aux comptes qui ont ce profil (« mj » : les mondes, réservés aux MJ). */
+  reservee_profil?: 'mj' | 'admin';
 }
 
 export const MENU: readonly EntreeMenu[] = [
@@ -23,8 +25,15 @@ export const MENU: readonly EntreeMenu[] = [
   { cle: 'magie', texte: 'Magie', chemin: '/regles/magie', brique: 'regles', disponible: false },
   { cle: 'objets', texte: 'Objets', chemin: '/regles/objets', brique: 'regles', disponible: false },
   { cle: 'bestiaire', texte: 'Bestiaire', chemin: '/regles/bestiaire', brique: 'regles', disponible: false },
-  { cle: 'mondes', texte: 'Mondes et PNJ', chemin: '/mondes', brique: 'plateforme', disponible: false },
-  { cle: 'campagnes', texte: 'Campagnes', chemin: '/campagnes', brique: 'plateforme', disponible: false },
+  {
+    cle: 'mondes',
+    texte: 'Mondes et PNJ',
+    chemin: '/mondes',
+    brique: 'plateforme',
+    disponible: true,
+    reservee_profil: 'mj',
+  },
+  { cle: 'campagnes', texte: 'Campagnes', chemin: '/campagnes', brique: 'plateforme', disponible: true },
   {
     cle: 'joueurs',
     texte: 'Joueurs',

@@ -9,6 +9,8 @@ export interface CadreProps {
     nom: string;
     /** Vrai pour les MJ et les administrateurs (champ `peut_inviter` de /moi) : montre l'entrée « Joueurs ». */
     peutInviter?: boolean;
+    /** Les profils du joueur (champ `roles` de /moi ou du jeton) : certaines entrées leur sont réservées. */
+    profils?: readonly string[];
     /** Chemin de la page affichée ; par défaut, celui de la barre d'adresse. Sert à souligner l'entrée active. */
     chemin?: string;
     /** Navigation sans rechargement dans sa propre brique (votre routeur). Sans elle, les liens rechargent la page. */

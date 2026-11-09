@@ -9,8 +9,15 @@ export const MENU = [
     { cle: 'magie', texte: 'Magie', chemin: '/regles/magie', brique: 'regles', disponible: false },
     { cle: 'objets', texte: 'Objets', chemin: '/regles/objets', brique: 'regles', disponible: false },
     { cle: 'bestiaire', texte: 'Bestiaire', chemin: '/regles/bestiaire', brique: 'regles', disponible: false },
-    { cle: 'mondes', texte: 'Mondes et PNJ', chemin: '/mondes', brique: 'plateforme', disponible: false },
-    { cle: 'campagnes', texte: 'Campagnes', chemin: '/campagnes', brique: 'plateforme', disponible: false },
+    {
+        cle: 'mondes',
+        texte: 'Mondes et PNJ',
+        chemin: '/mondes',
+        brique: 'plateforme',
+        disponible: true,
+        reservee_profil: 'mj',
+    },
+    { cle: 'campagnes', texte: 'Campagnes', chemin: '/campagnes', brique: 'plateforme', disponible: true },
     {
         cle: 'joueurs',
         texte: 'Joueurs',

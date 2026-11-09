@@ -16,6 +16,7 @@ export function Cadre(p) {
     };
     return (_jsxs(_Fragment, { children: [_jsxs("header", { className: "entete", children: [_jsxs("a", { className: "marque", href: "/", onClick: suivre('/', 'plateforme'), children: [_jsx("img", { className: "portrait", src: PORTRAIT, alt: "", width: 32, height: 39 }), _jsx("span", { children: "Agamites" })] }), _jsx("nav", { className: "menu", "aria-label": "Menu principal", children: menu
                             .filter((e) => !e.reservee_inviteurs || p.peutInviter)
+                            .filter((e) => !e.reservee_profil || (p.profils ?? []).includes(e.reservee_profil))
                             .map((e) => e.disponible ? (_jsx("a", { href: e.chemin, "aria-current": active?.cle === e.cle ? 'page' : undefined, onClick: suivre(e.chemin, e.brique), children: e.texte }, e.cle)) : (_jsx("span", { className: "bientot", title: "Bient\u00F4t", children: e.texte }, e.cle))) }), _jsxs("div", { className: "compte", children: [_jsxs("a", { className: "compte-lien", href: "/compte", title: "Mon compte", "aria-current": chemin === '/compte' ? 'page' : undefined, onClick: suivre('/compte', 'plateforme'), children: [_jsx("span", { className: "initiale", "aria-hidden": "true", children: p.nom.slice(0, 1).toUpperCase() }), _jsx("span", { children: p.nom })] }), _jsx("button", { type: "button", className: "lien-bouton", onClick: p.surDeconnexion ??
                                     (() => {
                                         void deconnecter();

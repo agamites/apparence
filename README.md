@@ -20,21 +20,29 @@ import { Cadre, Carte, Champ, Message, appelAvecSession, moi } from '@agamites/a
 const joueur = await moi(); // null si personne n'est connecté
 if (!joueur || joueur.doit_changer_mot_de_passe) window.location.assign('/');
 
-<Cadre brique="regles" nom={joueur.nom} peutInviter={joueur.peut_inviter} naviguer={(chemin) => routeur.aller(chemin)}>
+<Cadre
+  brique="regles"
+  nom={joueur.nom}
+  peutInviter={joueur.peut_inviter}
+  profils={joueur.roles}
+  naviguer={(chemin) => routeur.aller(chemin)}
+>
   <Carte titre="Mes personnages">…</Carte>
 </Cadre>;
 ```
 
-| Élément              | Rôle                                                                                                         |
-| -------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `Cadre`              | en-tête (portrait, « Agamites », menu commun, initiale et prénom, « Se déconnecter »), contenu, pied de page |
-| `Carte`, `Vide`      | bloc sur vélin avec son titre ; texte d'un bloc encore vide (on le dit, on ne le cache pas)                  |
-| `Champ`              | libellé au-dessus, aide et erreur en dessous, reliées au contrôle pour les lecteurs d'écran                  |
-| `Message`            | bandeau `reussite` (vert), `alerte` (ambre : signalé) ou `erreur` (rouge : refusé)                           |
-| `moi()`              | le joueur connecté, ou `null`                                                                                |
-| `appelAvecSession()` | `fetch` qui, sur un 401, renouvelle le jeton auprès de la Plateforme et recommence une fois                  |
-| `deconnecter()`      | ferme la session sur tout le site                                                                            |
-| `MENU`               | le menu commun, avec la brique propriétaire de chaque entrée                                                 |
+| Élément | Rôle                                                                                                         |
+| ------- | ------------------------------------------------------------------------------------------------------------ |
+| `Cadre` | en-tête (portrait, « Agamites », menu commun, initiale et prénom, « Se déconnecter »), contenu, pied de page |
+
+Depuis la 1.3.0, passez `profils={joueur.roles}` au `Cadre` : l'entrée « Mondes et PNJ » n'est montrée qu'aux MJ, et « Campagnes » est ouverte.
+| `Carte`, `Vide` | bloc sur vélin avec son titre ; texte d'un bloc encore vide (on le dit, on ne le cache pas) |
+| `Champ` | libellé au-dessus, aide et erreur en dessous, reliées au contrôle pour les lecteurs d'écran |
+| `Message` | bandeau `reussite` (vert), `alerte` (ambre : signalé) ou `erreur` (rouge : refusé) |
+| `moi()` | le joueur connecté, ou `null` |
+| `appelAvecSession()` | `fetch` qui, sur un 401, renouvelle le jeton auprès de la Plateforme et recommence une fois |
+| `deconnecter()` | ferme la session sur tout le site |
+| `MENU` | le menu commun, avec la brique propriétaire de chaque entrée |
 
 Les classes CSS (`.bouton`, `.bouton-secondaire`, `.lien-bouton`, `.formulaire`, `.colonnes`, `.pile`…) sont décrites dans [CHARTE.md](https://github.com/agamites/plateforme/blob/main/CHARTE.md) (dépôt `plateforme`).
 
