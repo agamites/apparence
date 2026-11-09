@@ -6,7 +6,7 @@ Pour le joueur, c'est un seul site : même en-tête, même menu, mêmes couleurs
 ## Installer
 
 ```
-npm install -D https://codeload.github.com/agamites/apparence/tar.gz/b7ad2ba4b77efe4fecee3822c84af1dbeb7dfae2
+npm install -D https://codeload.github.com/agamites/apparence/tar.gz/e9f204ba7cdc66bb12dbb956884311637100d393
 ```
 
 Le dépôt est public : aucune clé ni aucun `git` ne sont nécessaires, ni en local ni dans une image Docker. L'adresse désigne une version précise (le numéro du commit). Pour passer à une version plus récente, on remplace ce numéro par celui du dernier commit de `main`, indiqué en tête de [l'historique](https://github.com/agamites/apparence/commits/main).
